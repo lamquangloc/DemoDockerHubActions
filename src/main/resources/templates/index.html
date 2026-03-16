@@ -1,10 +1,176 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${name} + ' - Giới thiệu bản thân'">Giới thiệu bản thân</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 680px;
+            width: 100%;
+            color: #fff;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0 auto 24px;
+            border: 3px solid rgba(233, 69, 96, 0.6);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+        }
+
+        .role {
+            text-align: center;
+            color: #e94560;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 28px 0;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e94560;
+            margin-bottom: 12px;
+        }
+
+        .bio {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .info-label {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 0.9rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .skill-tag {
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.4);
+            color: #e94560;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
 </head>
 <body>
-    <h1 th:text="${message}">Hello World</h1>
+    <div class="card">
+        <div class="avatar" th:text="${initials}">LQL</div>
+        <div class="name" th:text="${name}">Lâm Quang Lộc</div>
+        <div class="role" th:text="${role}">Backend Developer</div>
+
+        <hr class="divider">
+
+        <div class="section-title">Giới thiệu</div>
+        <p class="bio" th:text="${bio}">...</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Trường</div>
+                <div class="info-value" th:text="${school}">...</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Chuyên ngành</div>
+                <div class="info-value" th:text="${major}">...</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Email</div>
+                <div class="info-value" th:text="${email}">...</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">GitHub</div>
+                <div class="info-value" th:text="${github}">...</div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section-title">Kỹ năng</div>
+        <div class="skills">
+            <span class="skill-tag" th:each="skill : ${skills}" th:text="${skill}">Java</span>
+        </div>
+
+        <div class="footer">Chạy trên Spring Boot &bull; Dockerized &bull; CI/CD với GitHub Actions</div>
+    </div>
 </body>
 </html>
